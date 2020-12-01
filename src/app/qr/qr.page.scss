@@ -1,0 +1,14 @@
+.scan-icon {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: space-evenly !important;
+    align-items: center;
+    border: 1px solid var(--ion-color-primary);
+    border-radius: 15px;
+    flex-direction: column;
+}
+
+.icon-size {
+    font-size: 4rem;
+}

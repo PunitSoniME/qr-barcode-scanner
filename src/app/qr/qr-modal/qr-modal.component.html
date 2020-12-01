@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+
+    <ion-toolbar [color]="scannedResult ? 'primary' : 'dark'">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+
+        <ion-title>Barcode / QR Scanner</ion-title>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngClass]="{'content-background': !scannedResult}">
+    <ion-header collapse="condense">
+
+        <ion-toolbar [color]="scannedResult ? 'primary' : 'dark'">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/"></ion-back-button>
+            </ion-buttons>
+
+            <ion-title size="large">Barcode / QR Scanner</ion-title>
+        </ion-toolbar>
+
+    </ion-header>
+
+    <div class="main ion-align-items-stretch">
+        <ion-card [hidden]="!scannedResult">
+            <ion-card-header>
+                <ion-card-title>Scanned Result</ion-card-title>
+                <ion-card-subtitle>{{scannedResult}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content class="ion-no-padding">
+                <ion-grid fixed>
+                    <ion-row>
+                        <ion-col size="6">
+                            <ion-button (click)="copy()" expand="block">
+                                <ion-icon slot="start" name="copy-outline"></ion-icon>
+                                Copy
+                            </ion-button>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-button (click)="back()" expand="block">
+                                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+                                Go Back
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-button (click)="scanNew()" expand="block">
+                                <ion-icon slot="start" name="scan"></ion-icon>
+                                Scan New
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card-content>
+
+        </ion-card>
+
+        <zxing-scanner #scanner *ngIf="!scannedResult" [formats]="formats" start="true"></zxing-scanner>
+        <!-- (scanSuccess)="onCodeResult($event)" -->
+    </div>
+
+</ion-content>
